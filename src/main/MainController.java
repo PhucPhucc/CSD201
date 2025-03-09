@@ -73,7 +73,7 @@ public class MainController implements Runnable {
 
         gc = gameCanvas.getGraphicsContext2D();
         try {
-            BufferedImage bi = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/boy_right_1.png")));
+            BufferedImage bi = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boy_right_1.png")));
 
             img = SwingFXUtils.toFXImage(bi, null);
         } catch (Exception e) {
@@ -167,7 +167,7 @@ public class MainController implements Runnable {
 
     @FXML
     private void backMenu(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/res/FXML/Home.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/res/FXML/home.fxml")));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT));
         stage.setTitle("Home Scene");
