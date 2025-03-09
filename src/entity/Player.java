@@ -37,7 +37,7 @@ public class Player extends Entity{
 
     public void getPlayerImage() {
         try {
-            img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("../res/player/boy_right_1.png")));
+            img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boy_right_1.png")));
 
         } catch (Exception e) {
             throw new RuntimeException(e);

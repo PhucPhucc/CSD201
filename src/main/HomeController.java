@@ -14,7 +14,7 @@ public class HomeController {
 
     @FXML
     private void switchToGame(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../res/FXML/Game.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/res/FXML/Game.fxml")));
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT));
         stage.setTitle("Game Scene");

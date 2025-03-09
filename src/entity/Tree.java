@@ -23,7 +23,7 @@ public class Tree extends Entity{
         x = Main.TITLE_SIZE * 16;
         y = Main.TITLE_SIZE * 5;
         try {
-            img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("../res/tiles/016.png")));
+            img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/016.png")));
 
         } catch (Exception e) {
             throw new RuntimeException(e);

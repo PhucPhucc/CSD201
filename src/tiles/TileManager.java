@@ -37,18 +37,18 @@ public class TileManager {
         try {
 
             tiles[0] = new Tiles();
-            tiles[0].image =  new Image(Objects.requireNonNull(getClass().getResourceAsStream("../res/tiles/002.png")));
+            tiles[0].image =  new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/002.png")));
 
             // wall
             tiles[1] = new Tiles();
-            tiles[1].image =  new Image(Objects.requireNonNull(getClass().getResourceAsStream("../res/tiles/032.png")));
+            tiles[1].image =  new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/032.png")));
 
             tiles[2] = new Tiles();
-            tiles[2].image =  new Image(Objects.requireNonNull(getClass().getResourceAsStream("../res/tiles/019.png")));
+            tiles[2].image =  new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/019.png")));
 
             // tree
             tiles[3] = new Tiles();
-            tiles[3].image =  new Image(Objects.requireNonNull(getClass().getResourceAsStream("../res/tiles/016.png")));
+            tiles[3].image =  new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/016.png")));
             tiles[3].collision = true;
         } catch (Exception e) {
             throw new RuntimeException(e);
