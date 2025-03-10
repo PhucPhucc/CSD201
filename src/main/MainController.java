@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.application.Platform;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import tiles.TileManager;
 
@@ -131,6 +132,11 @@ public class MainController implements Runnable {
 
                 Rectangle playerBox = new Rectangle(player.x + 12, player.y + 7, 40, 50);
                 Rectangle treeBox = new Rectangle(tree.x + cactusOffsetX, tree.y + 7, cactusWidth, 50);
+
+                playerBox.setFill(Color.rgb(255, 0, 0));
+                treeBox.setFill(Color.rgb(0, 255, 0));
+                playerBox.toFront();
+                treeBox.toFront();
 
                 if (playerBox.intersects(treeBox.getBoundsInLocal())) {
                     gameOver();

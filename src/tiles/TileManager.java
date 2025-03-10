@@ -37,18 +37,18 @@ public class TileManager {
         try {
 
             tiles[0] = new Tiles();
-            tiles[0].image =  new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/002.png")));
+            tiles[0].image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/002.png")));
 
             // wall
             tiles[1] = new Tiles();
-            tiles[1].image =  new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/032.png")));
+            tiles[1].image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/032.png")));
 
             tiles[2] = new Tiles();
-            tiles[2].image =  new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/019.png")));
+            tiles[2].image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/019.png")));
 
             // tree
             tiles[3] = new Tiles();
-            tiles[3].image =  new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/016.png")));
+            tiles[3].image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/016.png")));
             tiles[3].collision = true;
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -111,7 +111,7 @@ public class TileManager {
     private void createTrees(int level) {
         Tree tree;
         double rand = Math.random();
-        if(rand < 0.2) {
+        if (rand < 0.2) {
             tree = new Tree(gc, true, level);
         } else {
             tree = new Tree(gc, false, level);
@@ -123,16 +123,16 @@ public class TileManager {
     int count = 200;
     int level = 0;
     int spawSpeed = 200;
+
     public void update() {
         Platform.runLater(() -> {
             count++;
             if (count > spawSpeed) {
-                createTrees(level * (1 + level++));
+                createTrees(level++);
                 count = 0;
-                spawSpeed -= level * 2;
-                if(spawSpeed < 50) spawSpeed = 50;
+                spawSpeed -= (int) Math.pow(level, 2);
+                if (spawSpeed < 50) spawSpeed = 100;
             }
-
 
 
             Iterator<Tree> iterator = trees.iterator();
@@ -148,13 +148,11 @@ public class TileManager {
 
 
     public void draw(GraphicsContext gc) {
-
-            drawMap();
+        drawMap();
         for (Tree tree : trees) {
             tree.draw(gc);
         }
     }
-
 
 
 }
