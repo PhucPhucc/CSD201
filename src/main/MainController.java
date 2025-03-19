@@ -14,16 +14,21 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.application.Platform;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
 import tiles.TileManager;
 
 import javax.imageio.ImageIO;
+
 import javafx.scene.shape.Rectangle;
+
 import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -46,6 +51,8 @@ public class MainController implements Runnable {
     private final int FPS = 60;
     private int score = 0;
     private boolean isRunning = true;
+    private ArrayList<Integer> scores;
+    String filePath = Objects.requireNonNull(getClass().getResource("/res/score/ranking.txt")).getPath();
 
     Image img;
     TileManager tileManager;
@@ -68,7 +75,6 @@ public class MainController implements Runnable {
 
     public void initialize() {
         if (gameCanvas == null) {
-            System.out.println("Canvas chưa được load từ FXML!");
             return;
         }
 
@@ -83,6 +89,10 @@ public class MainController implements Runnable {
         assert root != null;
         player = new Player(gc, root);
         tileManager = new TileManager(gc);
+        scores = new ArrayList<>();
+        readScore();
+
+
         startGameThread(); // Chỉ gọi sau khi gameCanvas đã được gán
     }
 
@@ -126,21 +136,45 @@ public class MainController implements Runnable {
             player.update();
 
             if (!tileManager.trees.isEmpty()) { // Chỉ lấy nếu có cây
-                Tree tree = tileManager.trees.get(0);
-                int cactusWidth = tree.getIsBigger() ? 60 : 30;
-                int cactusOffsetX = tree.getIsBigger() ? 2 : 17;
+                Platform.runLater(() -> {
+                    Tree tree = tileManager.trees.get(0);
 
-                Rectangle playerBox = new Rectangle(player.x + 12, player.y + 7, 40, 50);
-                Rectangle treeBox = new Rectangle(tree.x + cactusOffsetX, tree.y + 7, cactusWidth, 50);
+                    int playerWidth = 28;  // Giảm chiều rộng (nếu quá lớn)
+                    int playerHeight = 35; // Giảm chiều cao (nếu bị lệch)
+                    int offsetX = 22;      // Dịch hitbox về trung tâm hơn
+                    int offsetY = 20;
 
-                playerBox.setFill(Color.rgb(255, 0, 0));
-                treeBox.setFill(Color.rgb(0, 255, 0));
-                playerBox.toFront();
-                treeBox.toFront();
+                    Rectangle playerBox = new Rectangle(player.x + offsetX, player.y + offsetY, playerWidth, playerHeight);
 
-                if (playerBox.intersects(treeBox.getBoundsInLocal())) {
-                    gameOver();
-                }
+                    int treeWidth = tree.getIsBigger() ? 60 : 25;  // Điều chỉnh theo kích thước cây
+                    int treeHeight = 40;  // Có thể giảm để không tính phần gốc cây
+                    int treeOffsetX = tree.getIsBigger() ? 24 : 20; // Dịch hitbox về trung tâm
+                    int treeOffsetY = 12; // Dịch hitbox về trung tâm
+
+                    Rectangle treeBox = new Rectangle(tree.x + treeOffsetX, tree.y + treeOffsetY, treeWidth, treeHeight);
+
+//                    playerBox.setStroke(Color.RED);
+//                    playerBox.setFill(Color.TRANSPARENT);
+//                    playerBox.setStrokeWidth(2);
+//
+//                    treeBox.setStroke(Color.BLUE);
+//                    treeBox.setFill(Color.TRANSPARENT);
+//                    treeBox.setStrokeWidth(2);
+//
+//                    playerBox.toFront();
+//                    treeBox.toFront();
+//
+//                    // Xóa các Rectangle cũ nếu cần (tránh tạo quá nhiều object)
+//                    root.getChildren().removeIf(node -> node instanceof Rectangle);
+//
+//                    // Thêm vào AnchorPane
+//                    root.getChildren().addAll(playerBox, treeBox);
+
+                    if (playerBox.intersects(treeBox.getBoundsInLocal())) {
+                        gameOver();
+                    }
+
+                });
             }
         } else {
             paneGameOver.setVisible(true);
@@ -160,6 +194,7 @@ public class MainController implements Runnable {
     private void gameOver() {
         isRunning = false;
         System.out.println(score);
+        writeScore();
     }
 
     @FXML
@@ -169,6 +204,7 @@ public class MainController implements Runnable {
         tileManager.trees.clear();
         isRunning = true;
         tileManager = new TileManager(gc);
+        readScore();
     }
 
     @FXML
@@ -177,5 +213,36 @@ public class MainController implements Runnable {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT));
         stage.setTitle("Home Scene");
+    }
+
+
+    private void readScore() {
+        scores.clear();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                scores.add(Integer.parseInt(line.trim()));
+            }
+        } catch (IOException e) {
+            System.out.println("Không thể đọc file: " + e.getMessage());
+        }
+
+    }
+
+    private void writeScore() {
+        boolean isAdd = true;
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+
+            for (int s : scores) {
+                if(score > s && isAdd) {
+                    writer.write(score + "\n");
+                    isAdd = false;
+                }
+                writer.write(s + "\n");
+            }
+            writer.flush();
+        } catch (IOException e) {
+            System.out.println("Lỗi khi ghi file: " + e.getMessage());
+        }
     }
 }

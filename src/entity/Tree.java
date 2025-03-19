@@ -16,14 +16,14 @@ public class Tree extends Entity{
         this.gc = gc;
         this.isBigger = isBigger;
         setDefaultValue();
-        speed = 5 +  (double) (level);;
+        speed = 7 +  (double) (level / 5);
     }
 
     private void setDefaultValue() {
-        x = Main.TITLE_SIZE * 16;
-        y = Main.TITLE_SIZE * 5;
+        x = Main.TITLE_SIZE * 17;
+        y = Main.TITLE_SIZE * 7.2;
         try {
-            img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/016.png")));
+            img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/imgFXML/tree.png")));
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -39,7 +39,7 @@ public class Tree extends Entity{
     public void draw(GraphicsContext gc) {
         if (isBigger) {
             gc.drawImage(img, x, y, Main.TITLE_SIZE, Main.TITLE_SIZE);
-            gc.drawImage(img, x + Main.TITLE_SIZE, y, Main.TITLE_SIZE, Main.TITLE_SIZE);
+            gc.drawImage(img, x + (double) Main.TITLE_SIZE / 1.5, y, Main.TITLE_SIZE, Main.TITLE_SIZE);
         } else {
             gc.drawImage(img, x, y, Main.TITLE_SIZE, Main.TITLE_SIZE);
         }

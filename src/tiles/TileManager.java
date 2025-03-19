@@ -111,7 +111,7 @@ public class TileManager {
     private void createTrees(int level) {
         Tree tree;
         double rand = Math.random();
-        if (rand < 0.2) {
+        if (rand < 0.3) {
             tree = new Tree(gc, true, level);
         } else {
             tree = new Tree(gc, false, level);
@@ -120,9 +120,9 @@ public class TileManager {
 
     }
 
-    int count = 200;
+    int count = 150;
     int level = 0;
-    int spawSpeed = 200;
+    int spawSpeed = 150;
 
     public void update() {
         Platform.runLater(() -> {
@@ -130,8 +130,10 @@ public class TileManager {
             if (count > spawSpeed) {
                 createTrees(level++);
                 count = 0;
-                spawSpeed -= (int) Math.pow(level, 2);
-                if (spawSpeed < 50) spawSpeed = 100;
+                if (spawSpeed > 100) {
+                    spawSpeed -= (int) Math.pow(level, 1.2);
+                }
+//                if(level == )
             }
 
 
@@ -148,7 +150,7 @@ public class TileManager {
 
 
     public void draw(GraphicsContext gc) {
-        drawMap();
+//        drawMap();
         for (Tree tree : trees) {
             tree.draw(gc);
         }

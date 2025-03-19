@@ -20,7 +20,7 @@ public class Player extends Entity {
     private int ground;
     private Image image;
 
-    boolean isSpace = false;
+    public boolean isSpace = false;
 
     public Player(GraphicsContext gc, AnchorPane root) {
         this.gc = gc;
@@ -33,8 +33,8 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         x = Main.TITLE_SIZE;
-        y = Main.TITLE_SIZE * 5;
-        ground = Main.TITLE_SIZE * 5;
+        y = Main.TITLE_SIZE * 7;
+        ground = Main.TITLE_SIZE * 7;
         speed = 6;
         gravity = 7;
     }
@@ -73,7 +73,7 @@ public class Player extends Entity {
             }
 
             if (isJumping) {
-                if (y > 200) {
+                if (y > 350) {
                     y -= speed;
                     image = img[4];
 
