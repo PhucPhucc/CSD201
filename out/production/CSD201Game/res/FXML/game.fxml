@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="640" prefWidth="1024" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
+<AnchorPane fx:id="root" prefHeight="640" prefWidth="1024" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
    <children>
       <ImageView fitHeight="640.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -39,6 +39,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
+            <ImageView fitHeight="200.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </children>

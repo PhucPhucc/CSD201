@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="640" prefWidth="1024" style="-fx-background-color: #ccc;" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.HomeController">
+<AnchorPane prefHeight="640" prefWidth="1024" style="-fx-background-color: #ccc;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.HomeController">
    <children>
       <ImageView fitHeight="640.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -46,7 +46,7 @@
                   <DropShadow blurType="TWO_PASS_BOX" height="1.0" offsetX="3.0" offsetY="3.0" radius="0.0" spread="1.0" width="1.0" />
                </effect>
             </Label>
-            <Button minWidth="150.0" mnemonicParsing="false" onAction="#switchToGame" text="Play" AnchorPane.leftAnchor="330.0" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="125.0">
+            <Button maxWidth="150.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#switchToGame" stylesheets="@styles.css" text="Play" AnchorPane.leftAnchor="330.0" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="125.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -56,7 +56,7 @@
             </Button>
             <Button minWidth="150.0" mnemonicParsing="false" onAction="#openRanking" text="Ranking" AnchorPane.leftAnchor="330.0" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="200.0">
                <padding>
-                  <Insets bottom="16.0" top="16.0" />
+                  <Insets bottom="14.0" top="14.0" />
                </padding>
                <font>
                   <Font size="18.0" />
@@ -64,7 +64,7 @@
             </Button>
             <Button minWidth="150.0" mnemonicParsing="false" onAction="#openHelps" text="Helps" AnchorPane.leftAnchor="330.0" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="275.0">
                <padding>
-                  <Insets bottom="16.0" top="16.0" />
+                  <Insets bottom="14.0" top="14.0" />
                </padding>
                <font>
                   <Font size="18.0" />
@@ -72,7 +72,7 @@
             </Button>
             <Button minWidth="150.0" mnemonicParsing="false" onAction="#openAboutUs" text="About Us" AnchorPane.leftAnchor="330.0" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="350.0">
                <padding>
-                  <Insets bottom="16.0" top="16.0" />
+                  <Insets bottom="14.0" top="14.0" />
                </padding>
                <font>
                   <Font size="18.0" />
@@ -80,7 +80,7 @@
             </Button>
             <Button minWidth="150.0" mnemonicParsing="false" onAction="#exitGame" text="Quit" AnchorPane.leftAnchor="330.0" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="425.0">
                <padding>
-                  <Insets bottom="16.0" top="16.0" />
+                  <Insets bottom="14.0" top="14.0" />
                </padding>
                <font>
                   <Font size="18.0" />
@@ -110,7 +110,24 @@
          <children>
             <ImageView fitHeight="360.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../imgFXML/T.T.png" />
+                  <Image url="@../imgFXML/about.png" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" onAction="#closeModal" style="-fx-background-color: #FB4141;" text="X" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="27.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="6.0" right="6.0" />
+               </padding>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="helpsPane" layoutX="202.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <children>
+            <ImageView fitHeight="360.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgFXML/helps.png" />
                </image>
             </ImageView>
             <Button mnemonicParsing="false" onAction="#closeModal" style="-fx-background-color: #FB4141;" text="X" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="27.0">

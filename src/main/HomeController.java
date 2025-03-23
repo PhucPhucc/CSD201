@@ -1,5 +1,6 @@
 package main;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +24,11 @@ import java.util.Objects;
 public class HomeController {
 
     @FXML
-    private Pane aboutUsPane;
+    private AnchorPane aboutUsPane;
+
+    @FXML
+    private AnchorPane helpsPane;
+
 
     @FXML
     private ListView<Integer> listRank;
@@ -35,6 +40,7 @@ public class HomeController {
     private void closeModal() {
         aboutUsPane.setVisible(false);
         paneRanking.setVisible(false);
+        helpsPane.setVisible(false);
     }
 
     @FXML
@@ -84,12 +90,12 @@ public class HomeController {
 
     @FXML
     private void openHelps() {
-        aboutUsPane.setVisible(true);
+        helpsPane.setVisible(true);
     }
 
     @FXML
     void exitGame() {
-
+        Platform.exit();
     }
 
     @FXML
@@ -100,7 +106,7 @@ public class HomeController {
         stage.setTitle("Game Scene");
     }
 
-    private ArrayList<Integer> scores = new ArrayList<>();
+    private final ArrayList<Integer> scores = new ArrayList<>();
 
 
     private void readScore() {
