@@ -13,17 +13,15 @@ import java.util.Objects;
 
 public class Player extends Entity {
 
-    private GraphicsContext gc;
     private final AnchorPane root;
 
-    private Image[] img;
+    private final Image[] img;
     private int ground;
     private Image image;
 
     public boolean isSpace = false;
 
-    public Player(GraphicsContext gc, AnchorPane root) {
-        this.gc = gc;
+    public Player( AnchorPane root) {
         this.root = root;
         img = new Image[6];
 

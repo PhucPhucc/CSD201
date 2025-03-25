@@ -1,5 +1,5 @@
 .button {
-    -fx-background-image: url("../imgFXML/button.png");
+    -fx-background-image: url("../image/button.png");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
 }

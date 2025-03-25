@@ -3,7 +3,6 @@ package main;
 
 import entity.Player;
 import entity.Tree;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,19 +13,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.application.Platform;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
 import tiles.TileManager;
-
-import javax.imageio.ImageIO;
-
 import javafx.scene.shape.Rectangle;
 
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -61,17 +54,8 @@ public class MainController implements Runnable {
 
     public MainController() throws IOException {
         initialize();
-
-
     }
 
-    private void startGameThread() {
-//        img = new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource("../res/player/boy_right_1.png")).toExternalForm()));
-
-        gameThread = new Thread(this);
-        gameThread.setDaemon(true);
-        gameThread.start();
-    }
 
     public void initialize() {
         if (gameCanvas == null) {
@@ -79,21 +63,18 @@ public class MainController implements Runnable {
         }
 
         gc = gameCanvas.getGraphicsContext2D();
-        try {
-            BufferedImage bi = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boy_right_1.png")));
-
-            img = SwingFXUtils.toFXImage(bi, null);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
         assert root != null;
-        player = new Player(gc, root);
+        player = new Player(root);
         tileManager = new TileManager(gc);
         scores = new ArrayList<>();
         readScore();
-
-
         startGameThread(); // Chỉ gọi sau khi gameCanvas đã được gán
+    }
+
+    private void startGameThread() {
+        gameThread = new Thread(this);
+        gameThread.setDaemon(true);
+        gameThread.start();
     }
 
     @Override
@@ -187,7 +168,7 @@ public class MainController implements Runnable {
 
             tileManager.draw(gc);
             player.draw(gc);
-            scoreLabel.setText("Điểm số của bạn: " + score);
+            scoreLabel.setText("Your scores: " + score);
         });
     }
 
@@ -226,7 +207,6 @@ public class MainController implements Runnable {
         } catch (IOException e) {
             System.out.println("Không thể đọc file: " + e.getMessage());
         }
-
     }
 
     private void writeScore() {
@@ -234,11 +214,14 @@ public class MainController implements Runnable {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
 
             for (int s : scores) {
-                if(score > s && isAdd) {
+                if (score > s && isAdd) {
                     writer.write(score + "\n");
                     isAdd = false;
                 }
                 writer.write(s + "\n");
+            }
+            if(isAdd) {
+                writer.write(score + "\n");
             }
             writer.flush();
         } catch (IOException e) {

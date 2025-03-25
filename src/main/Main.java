@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.util.Objects;
@@ -23,6 +24,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/res/FXML/home.fxml")));
         primaryStage.setTitle("JavaFX với FXML");
+        Image Icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/image/blackCat.jpg")));
+        primaryStage.getIcons().add(Icon);
         primaryStage.setScene(new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT));
         root.requestFocus();
         primaryStage.show();

@@ -8,40 +8,21 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="640" prefWidth="1024" style="-fx-background-color: #ccc;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.HomeController">
+<AnchorPane prefHeight="640" prefWidth="1024" style="-fx-background-color: #ccc;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.HomeController">
    <children>
       <ImageView fitHeight="640.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../imgFXML/bgHome.jpg" />
+            <Image url="@../image/bgHome.jpg" />
          </image>
       </ImageView>
       <AnchorPane layoutX="108.0" layoutY="50.0" AnchorPane.bottomAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
-            <Label alignment="CENTER" layoutX="180.0" layoutY="25.0" text="ĐƯỜNG ĐỜI BẤT TẬN" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+            <Label alignment="CENTER" layoutX="180.0" layoutY="25.0" text="The Endless Journey" textAlignment="CENTER" textFill="#3c8c23" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
                <font>
-                  <Font name="Calibri" size="60.0" />
+                  <Font name="Maiandra GD" size="52.0" />
                </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.4148148000240326" green="0.9024691581726074" blue="1.0" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="1.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </textFill>
                <effect>
                   <DropShadow blurType="TWO_PASS_BOX" height="1.0" offsetX="3.0" offsetY="3.0" radius="0.0" spread="1.0" width="1.0" />
                </effect>
@@ -110,7 +91,7 @@
          <children>
             <ImageView fitHeight="360.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../imgFXML/about.png" />
+                  <Image url="@../image/about.png" />
                </image>
             </ImageView>
             <Button mnemonicParsing="false" onAction="#closeModal" style="-fx-background-color: #FB4141;" text="X" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="27.0">
@@ -127,7 +108,7 @@
          <children>
             <ImageView fitHeight="360.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../imgFXML/helps.png" />
+                  <Image url="@../image/helps.png" />
                </image>
             </ImageView>
             <Button mnemonicParsing="false" onAction="#closeModal" style="-fx-background-color: #FB4141;" text="X" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="27.0">

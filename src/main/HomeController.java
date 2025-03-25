@@ -9,8 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -104,6 +104,8 @@ public class HomeController {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT));
         stage.setTitle("Game Scene");
+        Image Icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/image/blackCat.jpg")));
+        stage.getIcons().add(Icon);
     }
 
     private final ArrayList<Integer> scores = new ArrayList<>();

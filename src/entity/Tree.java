@@ -8,12 +8,10 @@ import java.util.Objects;
 
 public class Tree extends Entity{
 
-    private GraphicsContext gc;
     private Image img;
     private boolean isBigger;
 
     public Tree(GraphicsContext gc, boolean isBigger, int level) {
-        this.gc = gc;
         this.isBigger = isBigger;
         setDefaultValue();
         speed = 7 +  (double) (level / 5);
@@ -23,7 +21,7 @@ public class Tree extends Entity{
         x = Main.TITLE_SIZE * 17;
         y = Main.TITLE_SIZE * 7.2;
         try {
-            img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/imgFXML/tree.png")));
+            img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/res/image/tree.png")));
 
         } catch (Exception e) {
             throw new RuntimeException(e);

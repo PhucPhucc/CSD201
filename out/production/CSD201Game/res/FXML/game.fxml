@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="640" prefWidth="1024" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
+<AnchorPane fx:id="root" prefHeight="640" prefWidth="1024" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
    <children>
       <ImageView fitHeight="640.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../imgFXML/ground.jpg" />
+            <Image url="@../image/ground.jpg" />
          </image>
       </ImageView>
       <Canvas id="gameCanvas" fx:id="gameCanvas" height="640.0" layoutX="302.0" layoutY="127.0" width="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -22,24 +22,24 @@
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <Pane fx:id="paneGameOver" layoutX="312.0" layoutY="220.0" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #ccc;" visible="false">
+      <Pane fx:id="paneGameOver" layoutX="312.0" layoutY="220.0" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: transparent;" visible="false">
          <children>
-            <Label layoutX="72.0" layoutY="29.0" text="Game Over" textAlignment="CENTER" textFill="RED">
+            <ImageView fitHeight="200.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="46.0" layoutY="13.0" text="Game Over :(" textAlignment="CENTER" textFill="RED">
                <font>
                   <Font name="System Bold" size="49.0" />
                </font>
             </Label>
-            <Button fx:id="resetGame" layoutX="142.0" layoutY="100.0" mnemonicParsing="false" onAction="#resetGame" text="Play Again?">
+            <Button fx:id="resetGame" layoutX="142.0" layoutY="104.0" mnemonicParsing="false" onAction="#resetGame" text="Play Again?">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="143.0" layoutY="147.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="39.0" prefWidth="115.0" text="Menu">
+            <Button layoutX="142.0" layoutY="160.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="39.0" prefWidth="115.0" text="Menu">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <ImageView fitHeight="200.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </children>
